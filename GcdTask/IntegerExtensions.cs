@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace GcdTask
 {
@@ -14,7 +14,27 @@ namespace GcdTask
         /// <exception cref="ArgumentOutOfRangeException">Thrown when one or two numbers are int.MinValue.</exception>
         public static int FindGcd(int a, int b)
         {
-            throw new NotImplementedException("You need to implement this method.");
+            if (a == 0 && b == 0)
+            {
+                throw new ArgumentException("All numbers are 0");
+            }
+
+            if (a == int.MinValue)
+            {
+                throw new ArgumentOutOfRangeException(nameof(a));
+            }
+
+            if (b == int.MinValue)
+            {
+                throw new ArgumentOutOfRangeException(nameof(b));
+            }
+
+            return Math.Abs(GreatestCommonDivisor(a, b));
         }
+
+        public static int GreatestCommonDivisor(int a, int b)
+        { 
+        return b == 0 ? a : GreatestCommonDivisor(b, a % b);
+        } 
     }
 }
